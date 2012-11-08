@@ -37,6 +37,10 @@ int main(int argc, char* argv[])
 
 			// compute actual branch outcome
 			int br_taken = (current_instruction.pc != prev_instruction.pc + 8);
+			if( br_taken )
+				++num_taken;
+			else
+				++num_not_taken;
 
 		}
 		prev_instruction = current_instruction;
