@@ -15,6 +15,9 @@ int main(int argc, char* argv[])
 	int num_not_taken = 0;   
 	int num_mispredictions = 0;
 
+	int bp_pht[32768];
+	memset( bp_pht, 0, sizeof(bp_pht) ); // initialize to 0
+
 	// open the trace file
 	char trace_filename[MAX_STR];
 	if (argc > 1) {
@@ -35,6 +38,10 @@ int main(int argc, char* argv[])
 		// Each instruction in this architecture is 8 bytes long
 		if( isBranch(prev_instruction.op) ) {
 
+			unsigned index = ((unsigned)(long)current_instruction.pc >> 3) & ((1<<15)-1);
+			assert(index < 32768);
+			int prediction = bp_pht[ index ];
+
 			// compute actual branch outcome
 			int br_taken = (current_instruction.pc != prev_instruction.pc + 8);
 			if( br_taken )
@@ -42,8 +49,12 @@ int main(int argc, char* argv[])
 			else
 				++num_not_taken;
 
+			if( prediction != br_taken ) num_mispredictions++;
+
+
 		}
 		prev_instruction = current_instruction;
+		bp_pht[ index ] = br_taken;
 
 	}
 
