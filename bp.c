@@ -59,7 +59,7 @@ int main(int argc, char* argv[])
 				num_mispredictions++;
 			}
 
-			bp_history = br_taken;
+			bp_history[3] = br_taken;
 
 			if (br_taken) {
 				if (bp_pht[index] < 3)
