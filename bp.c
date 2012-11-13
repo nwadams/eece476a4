@@ -59,7 +59,7 @@ int main(int argc, char* argv[])
 			} else {
 				if (bp_pht[index] > 0)
 					bp_pht[index]--;
-
+			}
 		}
 		prev_instruction = current_instruction;
 
