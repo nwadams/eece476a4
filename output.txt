@@ -13,6 +13,15 @@ Branches 3333418, Taken 1740313 (0.5221), Not Taken 1593105 (0.4779), Prediction
 
 5.2 (2)
 
+Branches 332149, Taken 156770 (0.4720), Not Taken 175379 (0.5280), Prediction Accuracy 0.9914
+./bp /ubc/ece/home/courses/eece476/simplescalar/trace/gcc_25M.txt.gz
+Branches 3805562, Taken 1947510 (0.5118), Not Taken 1858052 (0.4882), Prediction Accuracy 0.9773
+./bp /ubc/ece/home/courses/eece476/simplescalar/trace/go_25M.txt.gz
+Branches 3354146, Taken 2051217 (0.6115), Not Taken 1302929 (0.3885), Prediction Accuracy 0.9762
+./bp /ubc/ece/home/courses/eece476/simplescalar/trace/vpr_25M.txt.gz
+Branches 3333418, Taken 1740313 (0.5221), Not Taken 1593105 (0.4779), Prediction Accuracy 0.9812
+
+
 5.2 (3)
 
 5.2 (4)
