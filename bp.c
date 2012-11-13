@@ -42,7 +42,7 @@ int main(int argc, char* argv[])
 
 			unsigned index = ((unsigned)(long)current_instruction.pc >> 3) & ((1<<11)-1);
 			assert(index < 32768/16);
-			index = index + 32768/16 (8 * bp_history[0] + 4 * bp_history[1] + 2 * bp_history[2] + bp_history[3]);
+			index = index + 32768/16 * (8 * bp_history[0] + 4 * bp_history[1] + 2 * bp_history[2] + bp_history[3]);
 			int prediction = bp_pht[ index ];
 
 			// compute actual branch outcome
