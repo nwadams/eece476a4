@@ -53,10 +53,12 @@ int main(int argc, char* argv[])
 				num_mispredictions++;
 			}
 
-			if (br_taken)
-				bp_pht[index]++;
-			else
-				bp_pht[index]--;
+			if (br_taken) {
+				if (bp_pht[index] < 3)
+					bp_pht[index]++;
+			} else {
+				if (bp_pht[index] > 0)
+					bp_pht[index]--;
 
 		}
 		prev_instruction = current_instruction;
