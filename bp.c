@@ -49,9 +49,14 @@ int main(int argc, char* argv[])
 			else
 				++num_not_taken;
 
-			if( prediction != br_taken ) num_mispredictions++;
-			bp_pht[ index ] = br_taken;
+			if((prediction > 1) != br_taken ) {
+				num_mispredictions++;
+			}
 
+			if (br_taken)
+				bp_pht[index]++;
+			else
+				bp_pht[index]--;
 
 		}
 		prev_instruction = current_instruction;
