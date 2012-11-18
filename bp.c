@@ -1,6 +1,7 @@
 /*
  * EECE 476
- *  Your name(s) here
+ *  Edward Han 62932082
+ *  Nick Adams 61406088
  */
 
 #include <stdio.h>
@@ -16,7 +17,7 @@ int main(int argc, char* argv[])
 	int num_mispredictions = 0;
 	int bp_phtsize = 131072/2;
 
-	int bp_history[4];
+	int bp_history[3];
 	int bp_pht[bp_phtsize];
 	memset( bp_pht, 0, sizeof(bp_pht) ); // initialize to 0
 	memset( bp_history, 0, sizeof(bp_history) ); // initialize to 0
@@ -41,9 +42,9 @@ int main(int argc, char* argv[])
 		// Each instruction in this architecture is 8 bytes long
 		if( isBranch(prev_instruction.op) ) {
 
-			unsigned index = ((unsigned)(long)current_instruction.pc >> 3) & ((1<<12)-1);
-			assert(index < bp_phtsize/16);
-			index = index + bp_phtsize/16 * (8 * bp_history[0] + 4 * bp_history[1] + 2 * bp_history[2] + bp_history[3]);
+			unsigned index = ((unsigned)(long)current_instruction.pc >> 3) & ((1<<13)-1);
+			assert(index < bp_phtsize/8);
+			index = index + bp_phtsize/8 * (4 * bp_history[0] + 2 * bp_history[1] + bp_history[2]);
 			int prediction = bp_pht[ index ];
 
 			// compute actual branch outcome
@@ -55,12 +56,12 @@ int main(int argc, char* argv[])
 			
 			bp_history[0] = bp_history[1];
 			bp_history[1] = bp_history[2];
-			bp_history[2] = bp_history[3];
+			//bp_history[2] = bp_history[3];
 			if((prediction > 1) != br_taken ) {
 				num_mispredictions++;
 			}
 
-			bp_history[3] = br_taken;
+			bp_history[2] = br_taken;
 
 			if (br_taken) {
 				if (bp_pht[index] < 3)
